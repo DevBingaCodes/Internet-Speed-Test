@@ -1,0 +1,27 @@
+{
+  "name": "vanillainternetspeedtest",
+  "version": "1.0.0",
+  "description": "- This is a simple command-line tool for testing your internet connection speed. It measures your download and upload speeds and provides you with a report on your connection's performance.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DevBingaCodes/Internet-Speed-Test.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/DevBingaCodes/Internet-Speed-Test/issues"
+  },
+  "homepage": "https://github.com/DevBingaCodes/Internet-Speed-Test#readme",
+  "dependencies": {
+    "dotenv": "^18.0.9",
+    "express": "^5.3.0",
+    "nodemon": "^3.1.11"
+  }
+}

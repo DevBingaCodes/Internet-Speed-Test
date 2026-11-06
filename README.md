@@ -1,28 +1,23 @@
-## INTERNET SPEED TEST
+# Internet Speed Test API
 
-## Desciription
- - This is a simple command-line tool for testing your internet connection speed. It measures your download and upload speeds and provides you with a report on your connection's performance.
+This API provides test traffic for a browser based speed test. The visitor's browser measures elapsed time and calculates download speed, upload speed, ping, and jitter; the backend does not measure its own network connection or store results.
 
- ## Features
- - Measure download speed
-- Measure upload speed
-- Display results in a user-friendly format
+## Run locally
 
-## Requirements
-- Node Package Manager 
-- Speedtest-cli library (Install using 'npm install speedtest-cli')
+```sh
+npm install
+npm run dev
+```
 
-## Usage 
-1.Make sure you have Node installed and running on your system.
-2.Install the speedtest-cli library by running the following command: 
-            npm install speedtest-cli
-3.Download or clone this repository to your local machine.
-4.Open a terminal or command prompt and navigate to the directory where you saved the program.
-5.Run the html program 
-6.The program will run the speedtest and display the results.
+Set `FRONTEND_ORIGIN` to the exact deployed frontend origin (for example, `https://example.com`) to allow browser requests from that site. Local development origins `http://localhost:3000` and `http://localhost:5173` are also allowed. Deploy behind HTTPS for production use.
 
-## Contributing
-If you'd like to contribute to this project, feel free to fork the repository and submit a pull request with your changes.
+## Endpoints
 
-## License
-This project is licensed under the MIT License. See the LICENSE file for details.
+| Method | Endpoint | Purpose |
+| --- | --- | --- |
+| GET | `/speedtest/health` | API health check |
+| GET | `/speedtest/download?bytes=10485760` | Stream download data (10 MiB by default, maximum 100 MiB) |
+| POST | `/speedtest/upload` | Receive a raw request body (maximum 100 MiB) and return its byte count |
+| GET | `/speedtest/ping` | Return a small uncached response for latency sampling |
+
+For accurate measurements, the browser should disable caching, time the complete download or upload with a monotonic clock, and calculate `bytes * 8 / seconds / 1,000,000` for Mbps. Use multiple ping samples; their average is latency and their variation can be used as jitter. Results are estimates of the visitor's route to this API server and can vary with server location and network conditions.
